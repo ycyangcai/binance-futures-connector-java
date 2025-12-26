@@ -36,5 +36,21 @@ public final class NewOrder {
             logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
                     e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
         }
+
+        try{
+
+            parameters.put("algoType", "CONDITIONAL");
+            parameters.put("triggerPrice","10000");
+            String result = client.account().newAlgoOrder(parameters);
+            logger.info(result);
+        }
+        catch (BinanceClientException e) {
+            logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
+                    e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
+        }
+        catch (BinanceConnectorException e) {
+            logger.error("fullErrMessage: {}", e.getMessage(), e);
+        }
+
     }
 }

@@ -204,6 +204,21 @@ public abstract class Account {
         return requestHandler.sendSignedRequest(productUrl, ORDER, parameters, HttpMethod.GET, showLimitUsage);
     }
 
+    /**
+     * Check an algo order's status.
+     * <br><br>
+     * GET /v1/algoOrder
+     * <br>
+     * @param
+     * parameters LinkedHashedMap of String,Object pair
+     *            where String is the name of the parameter and Object is the value of the parameter
+     * <br><br>
+     * symbol -- mandatory/string <br>
+     * orderId -- optional/long <br>
+     * origClientOrderId -- optional/string <br>
+     * recvWindow -- optional/long <br>
+     * @return String
+     **/
     public String queryAlgoOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkOrParameters(parameters, "orderId", "origClientOrderId");

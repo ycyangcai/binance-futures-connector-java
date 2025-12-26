@@ -32,5 +32,18 @@ public final class QueryOrder {
             logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
                     e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
         }
+
+        try{
+            String result = client.account().queryAlgoOrder(parameters);
+            logger.info(result);
+        }
+        catch (BinanceClientException e) {
+            logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
+                    e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
+        }
+        catch (BinanceConnectorException e) {
+            logger.error("fullErrMessage: {}", e.getMessage(), e);
+        }
+
     }
 }
