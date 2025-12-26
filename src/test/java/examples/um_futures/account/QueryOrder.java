@@ -33,15 +33,13 @@ public final class QueryOrder {
                     e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
         }
 
-        try{
+        try {
             String result = client.account().queryAlgoOrder(parameters);
             logger.info(result);
-        }
-        catch (BinanceClientException e) {
+        } catch (BinanceClientException e) {
             logger.error("fullErrMessage: {} \nerrMessage: {} \nerrCode: {} \nHTTPStatusCode: {}",
                     e.getMessage(), e.getErrMsg(), e.getErrorCode(), e.getHttpStatusCode(), e);
-        }
-        catch (BinanceConnectorException e) {
+        } catch (BinanceConnectorException e) {
             logger.error("fullErrMessage: {}", e.getMessage(), e);
         }
 
