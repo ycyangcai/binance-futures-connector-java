@@ -148,6 +148,14 @@ public abstract class Account {
         return requestHandler.sendSignedRequest(productUrl, ORDER, parameters, HttpMethod.POST, showLimitUsage);
     }
 
+    private final String ALGO_ORDER = "/v1/algoOrder";
+    public String newAlgoOrder(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkParameter(parameters, "side", String.class);
+        ParameterChecker.checkParameter(parameters, "type", String.class);
+        return requestHandler.sendSignedRequest(productUrl, ALGO_ORDER, parameters, HttpMethod.POST, showLimitUsage);
+    }
+
     private final String BATCH_ORDERS = "/v1/batchOrders";
     /**
      * Send in a new order.
@@ -195,6 +203,13 @@ public abstract class Account {
         ParameterChecker.checkOrParameters(parameters, "orderId", "origClientOrderId");
         return requestHandler.sendSignedRequest(productUrl, ORDER, parameters, HttpMethod.GET, showLimitUsage);
     }
+
+    public String queryAlgoOrder(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkOrParameters(parameters, "orderId", "origClientOrderId");
+        return requestHandler.sendSignedRequest(productUrl, ALGO_ORDER, parameters, HttpMethod.GET, showLimitUsage);
+    }
+
 
     /**
      * Cancel an active order.
