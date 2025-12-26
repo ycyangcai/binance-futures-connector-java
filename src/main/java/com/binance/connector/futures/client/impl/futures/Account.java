@@ -221,7 +221,7 @@ public abstract class Account {
      **/
     public String queryAlgoOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        ParameterChecker.checkOrParameters(parameters, "orderId", "origClientOrderId");
+        ParameterChecker.checkOrParameters(parameters, "algoId", "clientAlgoId");
         return requestHandler.sendSignedRequest(productUrl, ALGO_ORDER, parameters, HttpMethod.GET, showLimitUsage);
     }
 
@@ -249,6 +249,12 @@ public abstract class Account {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
         ParameterChecker.checkOrParameters(parameters, "orderId", "origClientOrderId");
         return requestHandler.sendSignedRequest(productUrl, ORDER, parameters, HttpMethod.DELETE, showLimitUsage);
+    }
+
+    public String cancelAlgoOrder(LinkedHashMap<String, Object> parameters) {
+        ParameterChecker.checkParameter(parameters, "symbol", String.class);
+        ParameterChecker.checkOrParameters(parameters, "clientAlgoId", "origClientOrderId");
+        return requestHandler.sendSignedRequest(productUrl, ALGO_ORDER, parameters, HttpMethod.DELETE, showLimitUsage);
     }
 
     private final String ALL_OPEN_ORDERS = "/v1/allOpenOrders";
