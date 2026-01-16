@@ -253,7 +253,7 @@ public abstract class Account {
 
     public String cancelAlgoOrder(LinkedHashMap<String, Object> parameters) {
         ParameterChecker.checkParameter(parameters, "symbol", String.class);
-        ParameterChecker.checkOrParameters(parameters, "clientAlgoId", "origClientOrderId");
+        ParameterChecker.checkOrParameters(parameters, "algoId", "clientAlgoId");
         return requestHandler.sendSignedRequest(productUrl, ALGO_ORDER, parameters, HttpMethod.DELETE, showLimitUsage);
     }
 
